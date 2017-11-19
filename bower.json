@@ -1,0 +1,36 @@
+{
+  "name": "wikiruki_main",
+  "description": "Markup wikiruki main page",
+  "main": "gulpfile.js",
+  "authors": [
+    "Bazhenov Eugen <wtf.czabe@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/ned4ded/wikiruki_main",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "3.3.7",
+    "jquery": "3.2.x",
+    "slick-carousel": "slick-slide#^1.8.1"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js"
+      ]
+    },
+    "slick-carousel": {
+      "main" : [
+        "slick/slick.css",
+        "slick/slick.js"
+      ]
+    }
+  }
+}

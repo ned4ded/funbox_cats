@@ -1,0 +1,40 @@
+{
+  "name": "wikiruki_main",
+  "version": "1.0.0",
+  "description": "Markup wikiruki main page",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ned4ded/wikiruki_main.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ned4ded/wikiruki_main/issues"
+  },
+  "homepage": "https://github.com/ned4ded/wikiruki_main#readme",
+  "dependencies": {
+    "autoprefixer": "^7.1.6",
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-css-url-adjuster": "^0.2.3",
+    "gulp-csscomb": "^3.0.8",
+    "gulp-imagemin": "^3.4.0",
+    "gulp-jshint": "^2.0.4",
+    "gulp-postcss": "^7.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-uglify": "^3.0.0",
+    "import-resolve": "^0.4.0",
+    "jshint": "^2.9.5",
+    "main-bower-files": "^2.13.1",
+    "postcss-easy-import": "^3.0.0",
+    "postcss-scss": "^1.0.2"
+  }
+}
