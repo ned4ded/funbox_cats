@@ -1,21 +1,21 @@
 {
-  "name": "wikiruki_main",
+  "name": "funbox-cats",
   "version": "1.0.0",
-  "description": "Markup wikiruki main page",
-  "main": "index.js",
+  "description": "Markup funbox-cats page",
+  "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ned4ded/wikiruki_main.git"
+    "url": "git+https://github.com/ned4ded/funbox_cats.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ned4ded/wikiruki_main/issues"
+    "url": "https://github.com/ned4ded/funbox_cats/issues"
   },
-  "homepage": "https://github.com/ned4ded/wikiruki_main#readme",
+  "homepage": "https://github.com/ned4ded/funbox_cats#readme",
   "dependencies": {
     "autoprefixer": "^7.1.6",
     "browser-sync": "^2.18.13",
@@ -24,7 +24,6 @@
     "gulp-concat": "^2.6.1",
     "gulp-css-url-adjuster": "^0.2.3",
     "gulp-csscomb": "^3.0.8",
-    "gulp-imagemin": "^3.4.0",
     "gulp-jshint": "^2.0.4",
     "gulp-postcss": "^7.0.0",
     "gulp-rename": "^1.2.2",
@@ -34,7 +33,6 @@
     "import-resolve": "^0.4.0",
     "jshint": "^2.9.5",
     "main-bower-files": "^2.13.1",
-    "postcss-easy-import": "^3.0.0",
     "postcss-scss": "^1.0.2"
   }
 }

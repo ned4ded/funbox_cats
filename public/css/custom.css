@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css?family=Exo+2:100");
+
+.main {
+  min-width: 420px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(#000000, transparent 50%, #000000) no-repeat, url("../img/background-pattern.jpg") repeat center;
+}
+
+.main * {
+  box-sizing: border-box;
+}
+
+.main__content {
+  min-width: 1200px;
+}
+
+.main__headline {
+  margin: 0 0 30px;
+  text-align: center;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 36px;
+  font-weight: 100;
+  color: white;
+  text-shadow: 0px 1px 0 #000000;
+}
+
+@media (max-width: 1199px) {
+  .main__content {
+    min-width: auto;
+    max-width: 800px;
+  }
+}
+
+.cats-feed {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  justify-content: space-around;
+  z-index: 0;
+}
+
+.cats-feed__item {
+  background-color: grey;
+  margin: 0 40px 40px;
+}
+
+.cats-feed__card {
+  display: block;
+  width: 320px;
+  min-height: 480px;
+  border-radius: 12px;
+  background-color: #f2f2f2;
+  border: solid 4px #1698d9;
+}
+
+.cats-feed__card-cap {
+  display: none;
+  width: 320px;
+  height: 60px;
+}
+
+.cats-feed__input {
+  display: none;
+}
+
+.cats-feed__input:checked ~ .cats-feed__card {
+  border-color: #d91667;
+}
+
+@media (max-width: 767px) {
+  .cats-feed {
+    flex-direction: column;
+    align-items: center;
+  }
+}

@@ -1,0 +1,49 @@
+.cats-feed {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  justify-content: space-around;
+  z-index: 0;
+
+  &__item {
+    background-color: grey;
+    margin: 0 40px 40px;
+  }
+
+  &__card {
+    display: block;
+    width: 320px;
+    min-height: 480px;
+    border-radius: 12px;
+    background-color: #f2f2f2;
+    border: solid 4px #1698d9;
+
+    &-cap {
+      display: none;
+      width: 320px;
+      height: 60px;
+    }
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &__input:checked ~ &__card {
+    border-color: #d91667;
+  }
+}
+
+@media (max-width: 1199px) {
+
+}
+
+@media (max-width: 767px) {
+  .cats-feed{
+    flex-direction: column;
+    align-items: center;
+  }
+}

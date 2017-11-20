@@ -23,7 +23,6 @@ const gulp = require('gulp');
     // With .scss files
     // const syntax = require('postcss-scss');
     // Set prefixes using CanIUse base
-    // const cssImport = require('postcss-easy-import')
     const autoprefixer = require('autoprefixer');
 
 
@@ -112,7 +111,7 @@ gulp.task('main-bower-files', function() {
     .pipe(rename(function(path) {
       path.extname = ".min.js"
     }))
-    .pipe(gulp.dest('app/js'));
+    .pipe(gulp.dest('public/js'));
 
   gulp.src(mainBowerFiles('**/*.css'))
     .pipe(cleanCss({debug: true}, function(details) {
@@ -122,7 +121,7 @@ gulp.task('main-bower-files', function() {
     .pipe(rename(function(path) {
       path.extname = ".min.css"
     }))
-    .pipe(gulp.dest('app/css'));
+    .pipe(gulp.dest('public/css'));
     return;
 });
 
@@ -130,8 +129,8 @@ gulp.task('webserver', function() {
   browserSync.init({
     open: false,
     ui: false,
-    server: './app',
-    files: './app/index.html',
+    server: './public',
+    files: './public/index.html',
     host: '192.168.1.130',
     port: 3002,
     reloadOnRestart: true,
@@ -140,19 +139,29 @@ gulp.task('webserver', function() {
 
   gulp.watch('./styles/*.scss', ['styles']);
   gulp.watch('./js/*.js', ['scripts']);
-  gulp.watch('./app/*.html').on('change', browserSync.reload);
+  gulp.watch('./html/*.html', ['html']);
 });
 
 gulp.task('styles', function() {
-  return sassPipeCons('/styles/base.scss', 'app/css');
-  //
+  return sassPipeCons('/styles/base.scss', 'public/css');
 });
 
 gulp.task('scripts', function() {
   return gulp.src(__dirname + '/js/*.js')
-  .pipe(concat('custom.js'))
-  .pipe(gulp.dest('app/js'))
-  .pipe(browserSync.stream());
+          .pipe(concat('custom.js'))
+          .pipe(gulp.dest('public/js'))
+          .pipe(browserSync.stream());
+})
+
+gulp.task('html', function() {
+  return gulp.src(__dirname + '/html/*.html')
+          .pipe(gulp.dest('public/'))
+          .pipe(browserSync.stream());
+});
+
+gulp.task('img', function() {
+  return gulp.src(__dirname + '/img/*')
+          .pipe(gulp.dest('public/img/'));
 })
 
 //Default, runing webserver
@@ -163,10 +172,10 @@ gulp.task('init', function() {
   const htmlFolder = 'html';
   const projectStructure = {
     folders: [
-      'app',
-      'app/css',
-      'app/js',
-      'app/img',
+      'public',
+      'public/css',
+      'public/js',
+      'public/img',
       htmlFolder,
       'js',
       'styles',
@@ -178,44 +187,32 @@ gulp.task('init', function() {
       'styles/base.scss',
     ]
   }
-  const htmlContent = `<!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-  </head>
-  <body>
 
-  </body>
-  </html>`;
+  projectStructure.folders.map(path => fs.mkdirSync(path));
+  projectStructure.files.map(name => fs.writeFileSync(name, ''));
 
-  // projectStructure.folders.map(path => fs.mkdirSync(path));
-  // projectStructure.files.map(name => fs.writeFileSync(name, ''));
+  gulp.start('main-bower-files');
+  gulp.start('styles');
 
-  // gulp.start('main-bower-files');
-  // gulp.start('styles');
-
-  return fs.readdirSync(htmlFolder).map(file => fs.writeFileSync(`${htmlFolder}/${file}`, htmlContent));
+  return;
 });
 
 //Archiving file in one ZIP
-gulp.task('archive', function() {
-
-  concatImportCss('styles/base.scss', 'project/styles/custom.scss');
-
-  gulp.src('project/styles/custom.scss')
-    .pipe(postcss([
-      autoprefixer({
-        browsers: ['last 2 versions']
-      })
-    ], {
-      syntax: require('postcss-scss')
-    }
-  ))
-  .pipe(gulp.dest('project/styles'));
-
-  // sassPipeCons('/styles/base.scss', 'project/styles', false, postCssPipe);
-  return;
-});
+// gulp.task('archive', function() {
+//
+//   concatImportCss('styles/base.scss', 'project/styles/custom.scss');
+//
+//   gulp.src('project/styles/custom.scss')
+//     .pipe(postcss([
+//       autoprefixer({
+//         browsers: ['last 2 versions']
+//       })
+//     ], {
+//       syntax: require('postcss-scss')
+//     }
+//   ))
+//   .pipe(gulp.dest('project/styles'));
+//
+//   // sassPipeCons('/styles/base.scss', 'project/styles', false, postCssPipe);
+//   return;
+// });
