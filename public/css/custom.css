@@ -1,9 +1,9 @@
 .main {
-  min-width: 420px;
   display: flex;
-  flex-flow: column nowrap;
   align-items: center;
+  flex-flow: column nowrap;
   justify-content: center;
+  min-width: 420px;
   min-height: 100vh;
   background: linear-gradient(#000000, transparent 50%, #000000) no-repeat, url("../img/background-pattern.jpg") repeat center;
 }
@@ -19,11 +19,11 @@
 .main__headline {
   margin: 0 0 30px;
   text-align: center;
+  color: white;
+  text-shadow: 0px 1px 0 #000000;
   font-family: 'Exo 2', sans-serif;
   font-size: 36px;
   font-weight: 100;
-  color: white;
-  text-shadow: 0px 1px 0 #000000;
 }
 
 @media (max-width: 1199px) {
@@ -34,47 +34,121 @@
 }
 
 .cats-feed {
+  z-index: 0;
+  display: flex;
+  align-items: flex-start;
+  flex-flow: row wrap;
+  justify-content: space-around;
   margin: 0;
   padding: 0;
   list-style: none;
-  display: flex;
-  flex-flow: row wrap;
-  align-items: flex-start;
-  justify-content: space-around;
-  z-index: 0;
 }
 
 .cats-feed__item {
-  background-color: grey;
   margin: 0 40px 40px;
-}
-
-.cats-feed__card {
-  display: block;
-  width: 320px;
-  min-height: 480px;
-  border-radius: 12px;
-  background-color: #f2f2f2;
-  border: solid 4px #1698d9;
-}
-
-.cats-feed__card-cap {
-  display: none;
-  width: 320px;
-  height: 60px;
-}
-
-.cats-feed__input {
-  display: none;
-}
-
-.cats-feed__input:checked ~ .cats-feed__card {
-  border-color: #d91667;
+  background-color: grey;
 }
 
 @media (max-width: 767px) {
   .cats-feed {
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
   }
+}
+
+.feed-card {
+  position: relative;
+}
+
+.feed-card__cap {
+  width: 320px;
+  height: 60px;
+}
+
+.feed-card__content {
+  display: block;
+  width: 320px;
+  min-height: 480px;
+  padding: 17px 44px 175px;
+  border: solid 4px #1698d9;
+  border-radius: 12px;
+  background: #f2f2f2 url("../img/../img/cat-background.png") no-repeat left -29px bottom -92px;
+}
+
+.feed-card__input {
+  display: none;
+}
+
+.feed-card__descr {
+  margin: 0;
+  margin-bottom: 7px;
+  text-align: left;
+  color: #666;
+  font-family: "Trebuchet MS", serif;
+  font-size: 16px;
+}
+
+.feed-card__name {
+  margin: 0;
+  margin-bottom: 12px;
+  text-align: left;
+  color: #000;
+  font-family: "Trebuchet MS", serif;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.feed-card__name-sub {
+  display: block;
+  font-size: 24px;
+}
+
+.feed-card__spec {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feed-card__spec-item {
+  margin: 0;
+  text-align: left;
+  color: #666;
+  font-family: "Trebuchet MS", serif;
+  font-size: 14px;
+  line-height: 1.14;
+}
+
+.feed-card__spec-item-count {
+  font-weight: bold;
+}
+
+.feed-card__serving {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  display: flex;
+  align-items: center;
+  flex-flow: column nowrap;
+  justify-content: center;
+  width: 81px;
+  height: 81px;
+  margin: 0;
+  color: white;
+  border-radius: 100%;
+  background-color: #1698d9;
+  font-family: "Trebuchet MS", serif;
+  font-size: 21px;
+}
+
+.feed-card__serving-weight {
+  font-size: 42px;
+  line-height: 100%;
+}
+
+.feed-card__input:checked ~ .feed-card__content {
+  border-color: #d91667;
+}
+
+.feed-card__input:checked ~ .feed-card__content .feed-card__serving {
+  background-color: #d91667;
 }

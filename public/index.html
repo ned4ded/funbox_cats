@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Cats</title>
+
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
+
   <link rel="stylesheet" href="./css/normalize.min.css">
   <link href="https://fonts.googleapis.com/css?family=Exo+2:100" rel="stylesheet">
   <link rel="stylesheet" href="./css/custom.css">
@@ -12,7 +19,7 @@
 <body>
   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" enable-background="new 0 0 100 100" xml:space="preserve" style="display: none;">
     <defs>
-      <symbol id="cats-feed__card-cap" viewBox="0 0 320 60">
+      <symbol id="feed-card-cap" viewBox="0 0 320 60">
         <path  fill-rule="evenodd" fill="white" stroke="blue" stroke-width="4px" stroke-linecap="butt" d="M2,60 L2,45 L45,2 L306,2 C312.627,2 318,7.372 318,14 L318,60"/>
       </symbol>
     </defs>
@@ -20,29 +27,55 @@
   <main class="main">
     <div class="main__content">
       <h1 class="main__headline">Ты сегодня кормил кота?</h1>
-      <ul class="cats-feed">
-        <li class="cats-feed__item">
-          <svg class="cats-feed__card-cap">
-            <use xlink:href="#cats-feed__card-cap"></use>
+      <ol class="cats-feed">
+        <li class="cats-feed__item feed-card">
+          <svg class="feed-card__cap hidden">
+            <use xlink:href="#feed-card-cap"></use>
           </svg>
-          <input type="checkbox" id="cats-feed__card-1" class="cats-feed__input">
-          <label for="cats-feed__card-1" class="cats-feed__card"></label>
+          <input type="checkbox" id="cats-feed-card-1" class="feed-card__input" hidden>
+          <label for="cats-feed-card-1" class="feed-card__content">
+            <p class="feed-card__descr">Сказочное заморское яство</p>
+            <h2 class="feed-card__name">Нямушка <span class="feed-card__name-sub">с фуа-гра</span></h2>
+            <ul class="feed-card__spec">
+              <li class="feed-card__spec-item"><span class="feed-card__spec-item-count">10</span> порций</li>
+              <li class="feed-card__spec-item">мышь в подарок</li>
+            </ul>
+            <p class="feed-card__serving"><span class="feed-card__serving-weight">0,5</span>кг</p>
+          </label>
         </li>
-        <li class="cats-feed__item">
-          <svg class="cats-feed__card-cap">
-            <use xlink:href="#cats-feed__card-cap"></use>
+        <li class="cats-feed__item feed-card">
+          <svg class="feed-card__cap hidden">
+            <use xlink:href="#feed-card-cap"></use>
           </svg>
-          <input type="checkbox" id="cats-feed__card-2" class="cats-feed__input">
-          <label for="cats-feed__card-2" class="cats-feed__card"></label>
+          <input type="checkbox" id="cats-feed-card-2" class="feed-card__input" hidden>
+          <label for="cats-feed-card-2" class="feed-card__content">
+            <p class="feed-card__descr">Сказочное заморское яство</p>
+            <h2 class="feed-card__name">Нямушка <span class="feed-card__name-sub">с рыбой</span></h2>
+            <ul class="feed-card__spec">
+              <li class="feed-card__spec-item"><span class="feed-card__spec-item-count">40</span> порций</li>
+              <li class="feed-card__spec-item"><span class="feed-card__spec-item-count">2</span> мыши в подарок</li>
+            </ul>
+            <p class="feed-card__serving"><span class="feed-card__serving-weight">2</span>кг</p>
+          </label>
         </li>
-        <li class="cats-feed__item">
-          <svg class="cats-feed__card-cap">
-            <use xlink:href="#cats-feed__card-cap"></use>
+        <li class="cats-feed__item feed-card">
+          <svg class="feed-card__cap hidden">
+            <use xlink:href="#feed-card-cap"></use>
           </svg>
-          <input type="checkbox" id="cats-feed__card-3" class="cats-feed__input">
-          <label for="cats-feed__card-3" class="cats-feed__card"></label>
+          <input type="checkbox" id="cats-feed-card-3" class="feed-card__input" hidden>
+          <label for="cats-feed-card-3" class="feed-card__content">
+            <p class="feed-card__descr">Сказочное заморское яство</p>
+            <h2 class="feed-card__name">Нямушка <span class="feed-card__name-sub">с курой</span></h2>
+            <ul class="feed-card__spec">
+              <li class="feed-card__spec-item"><span class="feed-card__spec-item-count">100</span> порций</li>
+              <li class="feed-card__spec-item"><span class="feed-card__spec-item-count">5</span> мышей в подарок</li>
+              <li class="feed-card__spec-item">заказчик доволен</li>
+            </ul>
+            <p class="feed-card__serving"><span class="feed-card__serving-weight">5</span>кг</p>
+          </label>
         </li>
-      </ul>
+
+      </ol>
     </div>
   </main>
 </body>
