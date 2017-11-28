@@ -1,8 +1,6 @@
 $border-thick: 4px;
 
 .feed-card {
-  position: relative;
-  z-index: 0;
   overflow: hidden;
 
   &__cap {
@@ -20,6 +18,8 @@ $border-thick: 4px;
     stroke: $highlight;
     stroke-width: $border-thick;
     stroke-linecap: "butt";
+
+    .feed-card__input:checked ~ & { stroke: $highlight-checked; }
   }
 
   &__content {
@@ -47,6 +47,9 @@ $border-thick: 4px;
       border-top: none;
       border-radius: 12px;
       background: $card-bgc url(../img/cat-background.png) no-repeat left -27px bottom -92px;
+
+      // checked logic
+      .feed-card__input:checked ~ & { border-color: $highlight-checked; }
     }
   }
 
@@ -139,49 +142,8 @@ $border-thick: 4px;
     &-unit {
       line-height: 80%;
     }
-  }
 
-
-  // Highlight logic
-  
-  &__content:hover:before {
-    border-color: $highlight-hover;
-  }
-
-  &__content:hover ~ &__cap {
-    stroke: $highlight-hover;
-  }
-
-  &__content:hover &__serving {
-    background-color: $highlight-hover;
-  }
-
-
-  &__input:checked ~ &__content {
-    &:before {
-      border-color: $highlight-checked;
-    }
-
-    &:hover:before {
-      border-color: $highlight-checked-hover;
-    }
-  }
-
-  &__input:checked ~ &__cap {
-    stroke: $highlight-checked;
-  }
-
-  &__input:checked ~ &__content:hover ~ &__cap {
-    stroke: $highlight-checked-hover;
-  }
-
-  &__input:checked ~ &__content {
-    & .feed-card__serving {
-      background-color: $highlight-checked;
-    }
-
-    &:hover .feed-card__serving {
-      background-color: $highlight-checked-hover;
-    }
+    // checked logic
+    .feed-card__input:checked ~ .feed-card__content & { background-color: $highlight-checked; }
   }
 }

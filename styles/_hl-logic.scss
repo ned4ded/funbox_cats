@@ -1,0 +1,102 @@
+/* -----------
+
+hl-logic file is for providing expected appearance of elements' highlighting;
+
+This logic must be followed by suitable HTML structure and proper elements' styling;
+
+-----------
+HTML structure:
+  .container
+    .input[type="checkbox"]
+    .label#checkbox-label-1
+    .label#checkbox-label-2
+    .provided-element
+
+-----------
+CSS styling:
+
+.container { p:r; z: >=0; }  // z depends on the whole page styling and
+                             // should be located above other layers
+.provided-element { w: <custom>; h: <custom> } // z === 0 (default);
+.label#checkbox-label-1, { p:a; w:100%; h:100%; z:1 } // lining layer 1
+.label#checkbox-label-2  { p:a; w:100%; h:100%; z:-1 } // lining layer 2
+
+
+-----------
+Other steps described beneath this comment section in the actual code.
+
+BE WARNED! z-index behavior could be broken if
+it will be used with opacity property
+
+----------- */
+
+.fraud-layer { // both lining layers styling
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  &-1 {
+    z-index: 1;
+
+    /* -----------
+    firstly, after checking input we should hide 1st lining layer,
+    which stands for hovering effect of unchecked state of provided element;
+    ----------- */
+    .feed-card__input:checked ~ & { display: none; }
+
+
+    /* -----------
+    secondly, we have to set the display property to block on hover;
+    in that case, 1st lining layer wouldn't be hidden immediately,
+    but after the first mouseleave event on the provided element;
+    z-index must be set to the higher value than z-index of 2nd lining layer in "checked" state;
+    last notice could be ignored
+    if you will put 2nd layer html earlier in html-file than 1st layer or
+    will use the other specificity trick
+    ----------- */
+
+    .feed-card__input ~ &:hover {
+      display: block;
+      z-index: 2;
+    }
+  }
+
+  &-2 {
+    z-index: -1;
+
+    .feed-card__input:checked ~ & {
+      z-index: 1;
+    }
+  }
+}
+
+.feed-card { // provided element
+  position: relative;
+  z-index: 0;
+
+  // unchecked state hover logic
+  .fraud-layer-1:hover ~ &__content:before { border-color: $highlight-hover; }
+
+  .fraud-layer-1:hover ~ &__cap { stroke: $highlight-hover; }
+
+  .fraud-layer-1:hover ~ &__content &__serving { background-color: $highlight-hover; }
+
+  // first hover after checking
+
+  &__input:checked ~ .fraud-layer-1:hover ~ &__content:before { border-color: $highlight-checked; }
+
+  &__input:checked ~ .fraud-layer-1:hover ~ &__cap { stroke: $highlight-checked; }
+
+  &__input:checked ~ .fraud-layer-1:hover ~ &__content &__serving { background-color: $highlight-checked; }
+
+
+  // checked state hover logic
+  .fraud-layer-2:hover ~ &__content:before { border-color: $highlight-checked-hover; }
+
+  .fraud-layer-2:hover ~ &__cap  { stroke: $highlight-checked-hover; }
+
+  .fraud-layer-2:hover ~ &__content &__serving { background-color: $highlight-checked-hover; }
+}

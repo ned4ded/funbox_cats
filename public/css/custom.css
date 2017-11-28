@@ -56,8 +56,6 @@
 }
 
 .feed-card {
-  position: relative;
-  z-index: 0;
   overflow: hidden;
 }
 
@@ -74,6 +72,10 @@
   stroke: #1698d9;
   stroke-width: 4px;
   stroke-linecap: "butt";
+}
+
+.feed-card__input:checked ~ .feed-card__cap {
+  stroke: #d91667;
 }
 
 .feed-card__content {
@@ -97,6 +99,10 @@
   border-top: none;
   border-radius: 12px;
   background: #f2f2f2 url("../img/../img/cat-background.png") no-repeat left -27px bottom -92px;
+}
+
+.feed-card__input:checked ~ .feed-card__content:before {
+  border-color: #d91667;
 }
 
 .feed-card__input {
@@ -174,38 +180,121 @@
   line-height: 80%;
 }
 
-.feed-card__content:hover:before {
-  border-color: #2ea8e6;
-}
-
-.feed-card__content:hover ~ .feed-card__cap {
-  stroke: #2ea8e6;
-}
-
-.feed-card__content:hover .feed-card__serving {
-  background-color: #2ea8e6;
-}
-
-.feed-card__input:checked ~ .feed-card__content:before {
-  border-color: #d91667;
-}
-
-.feed-card__input:checked ~ .feed-card__content:hover:before {
-  border-color: #e62e7a;
-}
-
-.feed-card__input:checked ~ .feed-card__cap {
-  stroke: #d91667;
-}
-
-.feed-card__input:checked ~ .feed-card__content:hover ~ .feed-card__cap {
-  stroke: #e62e7a;
-}
-
 .feed-card__input:checked ~ .feed-card__content .feed-card__serving {
   background-color: #d91667;
 }
 
-.feed-card__input:checked ~ .feed-card__content:hover .feed-card__serving {
+/* -----------
+
+hl-logic file is for providing expected appearance of elements' highlighting;
+
+This logic must be followed by suitable HTML structure and proper elements' styling;
+
+-----------
+HTML structure:
+  .container
+    .input[type="checkbox"]
+    .label#checkbox-label-1
+    .label#checkbox-label-2
+    .provided-element
+
+-----------
+CSS styling:
+
+.container { p:r; z: >=0; }  // z depends on the whole page styling and
+                             // should be located above other layers
+.provided-element { w: <custom>; h: <custom> } // z === 0 (default);
+.label#checkbox-label-1, { p:a; w:100%; h:100%; z:1 } // lining layer 1
+.label#checkbox-label-2  { p:a; w:100%; h:100%; z:-1 } // lining layer 2
+
+
+-----------
+Other steps described beneath this comment section in the actual code.
+
+BE WARNED! z-index behavior could be broken if
+it will be used with opacity property
+
+----------- */
+
+.fraud-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.fraud-layer-1 {
+  z-index: 1;
+  /* -----------
+    firstly, after checking input we should hide 1st lining layer,
+    which stands for hovering effect of unchecked state of provided element;
+    ----------- */
+  /* -----------
+    secondly, we have to set the display property to block on hover;
+    in that case, 1st lining layer wouldn't be hidden immediately,
+    but after the first mouseleave event on the provided element;
+    z-index must be set to the higher value than z-index of 2nd lining layer in "checked" state;
+    last notice could be ignored
+    if you will put 2nd layer html earlier in html-file than 1st layer or
+    will use the other specificity trick
+    ----------- */
+}
+
+.feed-card__input:checked ~ .fraud-layer-1 {
+  display: none;
+}
+
+.feed-card__input ~ .fraud-layer-1:hover {
+  display: block;
+  z-index: 2;
+}
+
+.fraud-layer-2 {
+  z-index: -1;
+}
+
+.feed-card__input:checked ~ .fraud-layer-2 {
+  z-index: 1;
+}
+
+.feed-card {
+  position: relative;
+  z-index: 0;
+}
+
+.fraud-layer-1:hover ~ .feed-card__content:before {
+  border-color: #2ea8e6;
+}
+
+.fraud-layer-1:hover ~ .feed-card__cap {
+  stroke: #2ea8e6;
+}
+
+.fraud-layer-1:hover ~ .feed-card__content .feed-card__serving {
+  background-color: #2ea8e6;
+}
+
+.feed-card__input:checked ~ .fraud-layer-1:hover ~ .feed-card__content:before {
+  border-color: #d91667;
+}
+
+.feed-card__input:checked ~ .fraud-layer-1:hover ~ .feed-card__cap {
+  stroke: #d91667;
+}
+
+.feed-card__input:checked ~ .fraud-layer-1:hover ~ .feed-card__content .feed-card__serving {
+  background-color: #d91667;
+}
+
+.fraud-layer-2:hover ~ .feed-card__content:before {
+  border-color: #e62e7a;
+}
+
+.fraud-layer-2:hover ~ .feed-card__cap {
+  stroke: #e62e7a;
+}
+
+.fraud-layer-2:hover ~ .feed-card__content .feed-card__serving {
   background-color: #e62e7a;
 }
