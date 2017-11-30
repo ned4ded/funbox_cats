@@ -1,4 +1,4 @@
-.fraud-layer { // both lining layers styling
+.fraud-layer {
   position: absolute;
   top: 0;
   left: 0;
@@ -11,22 +11,7 @@
   &-1 {
     z-index: 1;
 
-    /* -----------
-    firstly, after checking input we should hide 1st lining layer,
-    which stands for hovering effect of unchecked state of provided element;
-    ----------- */
     .feed-card__input:checked ~ & { display: none; }
-
-
-    /* -----------
-    secondly, we have to set the display property to block on hover;
-    in that case, 1st lining layer wouldn't be hidden immediately,
-    but after the first mouseleave event on the provided element;
-    z-index must be set to the higher value than z-index of 2nd lining layer in "checked" state;
-    last notice could be ignored
-    if you will put 2nd layer html earlier in html-file than 1st layer or
-    will use the other specificity trick
-    ----------- */
 
     .feed-card__input ~ &:hover {
       display: block;
@@ -43,7 +28,7 @@
   }
 }
 
-.feed-card { // provided element
+.feed-card {
   position: relative;
   z-index: 0;
 
