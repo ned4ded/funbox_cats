@@ -143,7 +143,7 @@ gulp.task('webserver', function() {
 });
 
 gulp.task('styles', function() {
-  return sassPipeCons('/styles/base.scss', 'public/css');
+  return sassPipeCons('/styles/base.scss', 'public/css', true, postCssPipe);
 });
 
 gulp.task('scripts', function() {

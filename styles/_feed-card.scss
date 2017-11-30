@@ -1,114 +1,101 @@
 $border-thick: 4px;
 
 .feed-card {
-  overflow: hidden;
-
-  &__cap {
-    display: block;
-    width: 320px;
-    height: 60px;
-
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-
-    fill-rule: evenodd;
-    fill: $card-bgc;
-    stroke: $highlight;
-    stroke-width: $border-thick;
-    stroke-linecap: "butt";
-
-    .feed-card__input:checked ~ & { stroke: $highlight-checked; }
-  }
-
-  &__content {
-    display: block;
-
-    width: 320px;
-    min-height: 480px;
-    padding: 17px 44px 175px;
-
-    &:before {
-      box-sizing: border-box;
-      position: absolute;
-      z-index: -2;
-      bottom: 0;
-      left: 0;
-
-      display: block;
-
-      width: 100%;
-      height: calc(100% - 50px);
-
-      content: '';
-
-      border: solid $border-thick $highlight;
-      border-top: none;
-      border-radius: 12px;
-      background: $card-bgc url(../img/cat-background.png) no-repeat left -27px bottom -92px;
-
-      // checked logic
-      .feed-card__input:checked ~ & { border-color: $highlight-checked; }
-    }
-  }
 
   &__input {
     display: none;
   }
 
-  &__descr {
-    margin: 0;
-    margin-bottom: 7px;
+  &__content {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
 
-    text-align: left;
+    width: 320px;
+    // negative bottom margin helps to keep control over lining layers' height
+    margin-bottom: -33px;
 
-    color: $semi-text-color;
+    &-body {
+      position: relative;
 
-    font-family: $trebushet;
-    font-size: 16px;
-  }
-
-  &__name {
-    margin: 0;
-    margin-bottom: 17px;
-
-    text-align: left;
-
-    color: $main-text-color;
-
-    font-family: $trebushet;
-    font-size: 48px;
-    font-weight: bold;
-
-    &-sub {
       display: block;
+      order: -1;
 
-      font-size: 24px;
-      line-height: 100%;
+      width: 320px;
+      min-height: 480px;
+      padding: 17px 44px 270px;
+
+      &:before,
+      &:after {
+        position: absolute;
+        z-index: -1;
+        bottom: 0;
+        left: 0;
+
+        display: block;
+
+        box-sizing: border-box;
+        width: 100%;
+        height: calc(100% - 50px);
+
+        content: '';
+
+        border-radius: 0 0 12px 12px;
+      }
+
+      &:before {
+        background: $card-bgc url(../img/cat-background.png) no-repeat left -27px bottom -92px;
+      }
+
+      &:after {
+        border: solid $border-thick $highlight;
+        border-top: none;
+      }
     }
   }
 
-  &__spec {
-    margin: 0;
-    padding: 0;
+  &__agit {
+    position: relative;
+
+    padding: 16px 0 0;
 
     list-style: none;
 
-    &-item {
-      margin: 0;
+    text-align: center;
 
-      text-align: left;
+    color: white;
+    border-bottom: 1px solid transparent;
+    text-shadow: 0px 1px 0 #000;
 
-      color: $semi-text-color;
+    font-family: $trebushet;
+    font-size: 13px;
+    line-height: 1.23;
 
-      font-family: $trebushet;
-      font-size: 14px;
-      line-height: 1.14;
+    &-link {
+      position: relative;
 
-      &-count {
-        font-weight: bold;
+      order: 1;
+
+      margin-left: 3px;
+
+      cursor: pointer;
+
+      color: $highlight;
+      border-bottom: 1px dashed $highlight;
+
+      font-weight: 700;
+
+      &:after{
+        position: absolute;
+
+        content: '.';
       }
+    }
+
+    &--selected, &--disabled { display: none; }
+
+    &--disabled {
+      color: #ff6;
     }
   }
 
@@ -133,7 +120,6 @@ $border-thick: 4px;
     font-family: $trebushet;
     font-size: 21px;
 
-
     &-weight {
       font-size: 42px;
       line-height: 100%;
@@ -142,8 +128,80 @@ $border-thick: 4px;
     &-unit {
       line-height: 80%;
     }
+  }
 
-    // checked logic
-    .feed-card__input:checked ~ .feed-card__content & { background-color: $highlight-checked; }
+  &__cap {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+
+    display: block;
+
+    width: 320px;
+    height: 60px;
+
+    fill-rule: evenodd;
+    fill: $card-bgc;
+    stroke: $highlight;
+    stroke-width: $border-thick;
+    stroke-linecap: "butt";
+  }
+
+  &__descr {
+    margin: 0 0 7px;
+
+    text-align: left;
+
+    color: $semi-text-color;
+
+    font-family: $trebushet;
+    font-size: 16px;
+
+    &--selected {
+      display: none;
+    }
+  }
+
+  &__name {
+    margin: 0 0 17px;
+
+    text-align: left;
+
+    color: $main-text-color;
+
+    font-family: $trebushet;
+    font-size: 48px;
+    font-weight: bold;
+
+    &-sub {
+      display: block;
+
+      font-size: 24px;
+      line-height: 100%;
+    }
+  }
+
+  &__spec {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+
+    color: $semi-text-color;
+
+    &-item {
+      margin: 0;
+
+      text-align: left;
+
+      font-family: $trebushet;
+      font-size: 14px;
+      line-height: 1.14;
+
+      &-count {
+        font-weight: bold;
+      }
+    }
   }
 }

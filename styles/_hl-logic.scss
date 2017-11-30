@@ -38,6 +38,8 @@ it will be used with opacity property
   width: 100%;
   height: 100%;
 
+  cursor: pointer;
+
   &-1 {
     z-index: 1;
 
@@ -77,26 +79,71 @@ it will be used with opacity property
   position: relative;
   z-index: 0;
 
-  // unchecked state hover logic
-  .fraud-layer-1:hover ~ &__content:before { border-color: $highlight-hover; }
+  // Unchecked state hover logic
+  .fraud-layer-1:hover ~ &__content &__content-body:after { border-color: $highlight-hover; }
 
-  .fraud-layer-1:hover ~ &__cap { stroke: $highlight-hover; }
+  .fraud-layer-1:hover ~ &__content &__cap { stroke: $highlight-hover; }
 
   .fraud-layer-1:hover ~ &__content &__serving { background-color: $highlight-hover; }
 
-  // first hover after checking
+  .fraud-layer-1:hover ~ &__content &__agit-link { color: $highlight-hover; border-bottom-color: $highlight-hover; }
 
-  &__input:checked ~ .fraud-layer-1:hover ~ &__content:before { border-color: $highlight-checked; }
+  &__agit-link:hover {
+    color: $highlight-hover;
+    border-bottom-color: $highlight-hover;
+  }
 
-  &__input:checked ~ .fraud-layer-1:hover ~ &__cap { stroke: $highlight-checked; }
+  &__agit-link:hover ~ &__content-body:after { border-color: $highlight-hover; }
+
+  &__agit-link:hover ~ &__content-body &__cap { stroke: $highlight-hover; }
+
+  &__agit-link:hover ~ &__serving { background-color: $highlight-hover; }
+
+  // 1st hover after checking
+  &__input:checked ~ .fraud-layer-1:hover ~ &__content &__content-body:after { border-color: $highlight-checked; }
+
+  &__input:checked ~ .fraud-layer-1:hover ~ &__content &__cap { stroke: $highlight-checked; }
 
   &__input:checked ~ .fraud-layer-1:hover ~ &__content &__serving { background-color: $highlight-checked; }
 
+  &__input:checked ~ &__content &__agit {
+    display: none;
+    &--selected { display: block; }
+  }
 
-  // checked state hover logic
-  .fraud-layer-2:hover ~ &__content:before { border-color: $highlight-checked-hover; }
+  // Checked state logic
+  &__input:checked ~ &__content &__content-body:after { border-color: $highlight-checked; }
 
-  .fraud-layer-2:hover ~ &__cap  { stroke: $highlight-checked-hover; }
+  &__input:checked ~ &__content &__serving { background-color: $highlight-checked; }
+
+  &__input:checked ~ &__content  &__cap { stroke: $highlight-checked; }
+
+  // Checked state :hover logic
+  .fraud-layer-2:hover ~ &__content  &__content-body:after { border-color: $highlight-checked-hover; }
+
+  .fraud-layer-2:hover ~ &__content  &__cap  { stroke: $highlight-checked-hover; }
 
   .fraud-layer-2:hover ~ &__content &__serving { background-color: $highlight-checked-hover; }
+
+  .fraud-layer-2:hover ~ &__content &__descr { display: none; }
+
+  .fraud-layer-2:hover ~ &__content &__descr--selected { display: block; color: $highlight-checked-hover; }
+
+  // Disabled
+  &__input:disabled ~ .fraud-layer-1 { z-index: -1; }
+
+  &__input:disabled ~ &__content &__agit {
+    display: none;
+    &--disabled { display: block };
+  }
+
+  &__input:disabled ~ &__content &__content-body:after { border-color: $highlight-disabled; background-color: rgba($card-bgc, .5);}
+
+  &__input:disabled ~ &__content &__serving { background-color: $highlight-disabled; }
+
+  &__input:disabled ~ &__content  &__cap { stroke: $highlight-disabled; }
+
+  &__input:disabled ~ &__content &__content-body &__spec { color: $highlight-disabled; }
+
+  &__input:disabled ~ &__content &__content-body > *:not(.feed-card__spec) { color: rgba($highlight-disabled, .5); }
 }
