@@ -269,38 +269,6 @@
   font-weight: bold;
 }
 
-/* -----------
-
-hl-logic file is for providing expected appearance of elements' highlighting;
-
-This logic must be followed by suitable HTML structure and proper elements' styling;
-
------------
-HTML structure:
-  .container
-    .input[type="checkbox"]
-    .label#checkbox-label-1
-    .label#checkbox-label-2
-    .provided-element
-
------------
-CSS styling:
-
-.container { p:r; z: >=0; }  // z depends on the whole page styling and
-                             // should be located above other layers
-.provided-element { w: <custom>; h: <custom> } // z === 0 (default);
-.label#checkbox-label-1, { p:a; w:100%; h:100%; z:1 } // lining layer 1
-.label#checkbox-label-2  { p:a; w:100%; h:100%; z:-1 } // lining layer 2
-
-
------------
-Other steps described beneath this comment section in the actual code.
-
-BE WARNED! z-index behavior could be broken if
-it will be used with opacity property
-
------------ */
-
 .fraud-layer {
   position: absolute;
   top: 0;
