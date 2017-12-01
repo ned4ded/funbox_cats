@@ -9,7 +9,7 @@
   min-width: 420px;
   min-height: 100vh;
 
-  background: linear-gradient(#000000, rgba(0, 0, 0, 0) 50%, #000000) no-repeat, url(background-pattern.jpg) repeat center;
+  background: linear-gradient(#000, rgba(0, 0, 0, 0) 50%, #000) no-repeat, url(background-pattern.jpg) repeat center;
 
 
   & * {
@@ -39,11 +39,7 @@
         max-width: 800px;
       }
     }
-
-  @media (max-width: 767px) {
-    }
 }
 
 @import 'cats-feed';
 @import 'feed-card';
-@import 'hl-logic';

@@ -138,7 +138,7 @@ gulp.task('webserver', function() {
   });
 
   gulp.watch('./styles/*.scss', ['styles']);
-  gulp.watch('./js/*.js', ['scripts']);
+  // gulp.watch('./js/*.js', ['scripts']);
   gulp.watch('./html/*.html', ['html']);
 });
 

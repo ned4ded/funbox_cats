@@ -7,19 +7,10 @@ $border-thick: 4px;
   }
 
   &__content {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-
-    width: 320px;
-    // negative bottom margin helps to keep control over lining layers' height
-    margin-bottom: -33px;
-
-    &-body {
+      z-index: 1;
       position: relative;
 
       display: block;
-      order: -1;
 
       width: 320px;
       min-height: 480px;
@@ -44,18 +35,20 @@ $border-thick: 4px;
       }
 
       &:before {
-        background: $card-bgc url(../img/cat-background.png) no-repeat left -27px bottom -92px;
+        background: $card-bgc url(cat-background.png) no-repeat left -27px bottom -92px;
       }
 
       &:after {
         border: solid $border-thick $highlight;
         border-top: none;
       }
-    }
   }
 
   &__agit {
-    position: relative;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
 
     padding: 16px 0 0;
 
@@ -72,12 +65,6 @@ $border-thick: 4px;
     line-height: 1.23;
 
     &-link {
-      position: relative;
-
-      order: 1;
-
-      margin-left: 3px;
-
       cursor: pointer;
 
       color: $highlight;

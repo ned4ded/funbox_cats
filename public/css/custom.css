@@ -14,8 +14,8 @@
           justify-content: center;
   min-width: 420px;
   min-height: 100vh;
-  background: -webkit-gradient(linear, left top, left bottom, from(#000000), color-stop(50%, transparent), to(#000000)) no-repeat, url("../img/background-pattern.jpg") repeat center;
-  background: linear-gradient(#000000, transparent 50%, #000000) no-repeat, url("../img/background-pattern.jpg") repeat center;
+  background: -webkit-gradient(linear, left top, left bottom, from(#000), color-stop(50%, transparent), to(#000)) no-repeat, url("../img/background-pattern.jpg") repeat center;
+  background: linear-gradient(#000, transparent 50%, #000) no-repeat, url("../img/background-pattern.jpg") repeat center;
 }
 
 .main * {
@@ -64,7 +64,7 @@
 }
 
 .cats-feed__item {
-  margin: 0 40px 60px;
+  margin: 0 40px 40px;
 }
 
 @media (max-width: 767px) {
@@ -84,33 +84,16 @@
 }
 
 .feed-card__content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  width: 320px;
-  margin-bottom: -33px;
-}
-
-.feed-card__content-body {
+  z-index: 1;
   position: relative;
   display: block;
-  -webkit-box-ordinal-group: 0;
-      -ms-flex-order: -1;
-          order: -1;
   width: 320px;
   min-height: 480px;
   padding: 17px 44px 270px;
 }
 
-.feed-card__content-body:before,
-.feed-card__content-body:after {
+.feed-card__content:before,
+.feed-card__content:after {
   position: absolute;
   z-index: -1;
   bottom: 0;
@@ -124,17 +107,20 @@
   border-radius: 0 0 12px 12px;
 }
 
-.feed-card__content-body:before {
+.feed-card__content:before {
   background: #f2f2f2 url("../img/../img/cat-background.png") no-repeat left -27px bottom -92px;
 }
 
-.feed-card__content-body:after {
+.feed-card__content:after {
   border: solid 4px #1698d9;
   border-top: none;
 }
 
 .feed-card__agit {
-  position: relative;
+  width: 100%;
+  position: absolute;
+  top: 100%;
+  left: 0;
   padding: 16px 0 0;
   list-style: none;
   text-align: center;
@@ -147,11 +133,6 @@
 }
 
 .feed-card__agit-link {
-  position: relative;
-  -webkit-box-ordinal-group: 2;
-      -ms-flex-order: 1;
-          order: 1;
-  margin-left: 3px;
   cursor: pointer;
   color: #1698d9;
   border-bottom: 1px dashed #1698d9;
@@ -267,204 +248,4 @@
 
 .feed-card__spec-item-count {
   font-weight: bold;
-}
-
-/* -----------
-
-hl-logic file is for providing expected appearance of elements' highlighting;
-
-This logic must be followed by suitable HTML structure and proper elements' styling;
-
------------
-HTML structure:
-  .container
-    .input[type="checkbox"]
-    .label#checkbox-label-1
-    .label#checkbox-label-2
-    .provided-element
-
------------
-CSS styling:
-
-.container { p:r; z: >=0; }  // z depends on the whole page styling and
-                             // should be located above other layers
-.provided-element { w: <custom>; h: <custom> } // z === 0 (default);
-.label#checkbox-label-1, { p:a; w:100%; h:100%; z:1 } // lining layer 1
-.label#checkbox-label-2  { p:a; w:100%; h:100%; z:-1 } // lining layer 2
-
-
------------
-Other steps described beneath this comment section in the actual code.
-
-BE WARNED! z-index behavior could be broken if
-it will be used with opacity property
-
------------ */
-
-.fraud-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-}
-
-.fraud-layer-1 {
-  z-index: 1;
-  /* -----------
-    firstly, after checking input we should hide 1st lining layer,
-    which stands for hovering effect of unchecked state of provided element;
-    ----------- */
-  /* -----------
-    secondly, we have to set the display property to block on hover;
-    in that case, 1st lining layer wouldn't be hidden immediately,
-    but after the first mouseleave event on the provided element;
-    z-index must be set to the higher value than z-index of 2nd lining layer in "checked" state;
-    last notice could be ignored
-    if you will put 2nd layer html earlier in html-file than 1st layer or
-    will use the other specificity trick
-    ----------- */
-}
-
-.feed-card__input:checked ~ .fraud-layer-1 {
-  display: none;
-}
-
-.feed-card__input ~ .fraud-layer-1:hover {
-  display: block;
-  z-index: 2;
-}
-
-.fraud-layer-2 {
-  z-index: -1;
-}
-
-.feed-card__input:checked ~ .fraud-layer-2 {
-  z-index: 1;
-}
-
-.feed-card {
-  position: relative;
-  z-index: 0;
-}
-
-.fraud-layer-1:hover ~ .feed-card__content .feed-card__content-body:after {
-  border-color: #2ea8e6;
-}
-
-.fraud-layer-1:hover ~ .feed-card__content .feed-card__cap {
-  stroke: #2ea8e6;
-}
-
-.fraud-layer-1:hover ~ .feed-card__content .feed-card__serving {
-  background-color: #2ea8e6;
-}
-
-.fraud-layer-1:hover ~ .feed-card__content .feed-card__agit-link {
-  color: #2ea8e6;
-  border-bottom-color: #2ea8e6;
-}
-
-.feed-card__agit-link:hover {
-  color: #2ea8e6;
-  border-bottom-color: #2ea8e6;
-}
-
-.feed-card__agit-link:hover ~ .feed-card__content-body:after {
-  border-color: #2ea8e6;
-}
-
-.feed-card__agit-link:hover ~ .feed-card__content-body .feed-card__cap {
-  stroke: #2ea8e6;
-}
-
-.feed-card__agit-link:hover ~ .feed-card__serving {
-  background-color: #2ea8e6;
-}
-
-.feed-card__input:checked ~ .fraud-layer-1:hover ~ .feed-card__content .feed-card__content-body:after {
-  border-color: #d91667;
-}
-
-.feed-card__input:checked ~ .fraud-layer-1:hover ~ .feed-card__content .feed-card__cap {
-  stroke: #d91667;
-}
-
-.feed-card__input:checked ~ .fraud-layer-1:hover ~ .feed-card__content .feed-card__serving {
-  background-color: #d91667;
-}
-
-.feed-card__input:checked ~ .feed-card__content .feed-card__agit {
-  display: none;
-}
-
-.feed-card__input:checked ~ .feed-card__content .feed-card__agit--selected {
-  display: block;
-}
-
-.feed-card__input:checked ~ .feed-card__content .feed-card__content-body:after {
-  border-color: #d91667;
-}
-
-.feed-card__input:checked ~ .feed-card__content .feed-card__serving {
-  background-color: #d91667;
-}
-
-.feed-card__input:checked ~ .feed-card__content .feed-card__cap {
-  stroke: #d91667;
-}
-
-.fraud-layer-2:hover ~ .feed-card__content .feed-card__content-body:after {
-  border-color: #e62e7a;
-}
-
-.fraud-layer-2:hover ~ .feed-card__content .feed-card__cap {
-  stroke: #e62e7a;
-}
-
-.fraud-layer-2:hover ~ .feed-card__content .feed-card__serving {
-  background-color: #e62e7a;
-}
-
-.fraud-layer-2:hover ~ .feed-card__content .feed-card__descr {
-  display: none;
-}
-
-.fraud-layer-2:hover ~ .feed-card__content .feed-card__descr--selected {
-  display: block;
-  color: #e62e7a;
-}
-
-.feed-card__input:disabled ~ .fraud-layer-1 {
-  z-index: -1;
-}
-
-.feed-card__input:disabled ~ .feed-card__content .feed-card__agit {
-  display: none;
-}
-
-.feed-card__input:disabled ~ .feed-card__content .feed-card__agit--disabled {
-  display: block;
-}
-
-.feed-card__input:disabled ~ .feed-card__content .feed-card__content-body:after {
-  border-color: #b3b3b3;
-  background-color: rgba(242, 242, 242, 0.5);
-}
-
-.feed-card__input:disabled ~ .feed-card__content .feed-card__serving {
-  background-color: #b3b3b3;
-}
-
-.feed-card__input:disabled ~ .feed-card__content .feed-card__cap {
-  stroke: #b3b3b3;
-}
-
-.feed-card__input:disabled ~ .feed-card__content .feed-card__content-body .feed-card__spec {
-  color: #b3b3b3;
-}
-
-.feed-card__input:disabled ~ .feed-card__content .feed-card__content-body > *:not(.feed-card__spec) {
-  color: rgba(179, 179, 179, 0.5);
 }
