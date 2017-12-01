@@ -58,6 +58,13 @@ const browserSync = require('browser-sync').create();
 
       const commonPipe = () => gulp.src(__dirname + path)
         .pipe(sass().on('error', sass.logError))
+        .pipe(postcss([
+          autoprefixer({
+            browsers: [
+              'last 2 versions'
+            ]
+          })
+        ]))
         .pipe(rename('custom.css'))
         .pipe(urlAdjust({
           prepend: '../img/',
@@ -138,12 +145,13 @@ gulp.task('webserver', function() {
   });
 
   gulp.watch('./styles/*.scss', ['styles']);
-  // gulp.watch('./js/*.js', ['scripts']);
+  gulp.watch('./js/*.js', ['scripts']);
   gulp.watch('./html/*.html', ['html']);
 });
 
 gulp.task('styles', function() {
-  return sassPipeCons('/styles/base.scss', 'public/css', true, postCssPipe);
+  return sassPipeCons('/styles/base.scss', 'public/css');
+  // return sassPipeCons('/styles/base.scss', 'public/css', true, postCssPipe);
 });
 
 gulp.task('scripts', function() {

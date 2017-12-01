@@ -1,6 +1,7 @@
 $border-thick: 4px;
 
 .feed-card {
+  position: relative;
 
   &__input {
     display: none;
@@ -15,6 +16,8 @@ $border-thick: 4px;
       width: 320px;
       min-height: 480px;
       padding: 17px 44px 270px;
+
+      cursor: pointer;
 
       &:before,
       &:after {
@@ -42,6 +45,36 @@ $border-thick: 4px;
         border: solid $border-thick $highlight;
         border-top: none;
       }
+
+      .feed-card--hover &:after {
+        border-color: $highlight-hover;
+      }
+
+      .feed-card__input:checked ~ &:after {
+        border-color: $highlight-checked;
+      }
+
+      .feed-card__input:disabled ~ & {
+        cursor: auto;
+
+        & .feed-card__name,
+        & .feed-card__descr {
+          color: rgba($highlight-disabled, 0.5);
+        }
+
+        & .feed-card__spec {
+          color: $highlight-disabled;
+        }
+      }
+
+      .feed-card__input:disabled ~ &:after {
+        border-color: $highlight-disabled;
+        background-color: rgba($card-bgc, 0.5);
+      }
+
+      .feed-card--hover .feed-card__input:checked ~ &:after {
+        border-color: $highlight-checked-hover;
+      }
   }
 
   &__agit {
@@ -64,6 +97,30 @@ $border-thick: 4px;
     font-size: 13px;
     line-height: 1.23;
 
+    &-item {
+      &--selected, &--disabled { display: none; }
+
+      &--disabled {
+        color: #ff6;
+      }
+    }
+
+    .feed-card__input:checked ~ & &-item {
+        display: none;
+
+        &--selected {
+          display: block;
+        }
+      }
+
+    .feed-card__input:disabled ~ & &-item {
+        display: none;
+
+        &--disabled {
+          display: block;
+        }
+      }
+
     &-link {
       cursor: pointer;
 
@@ -77,14 +134,14 @@ $border-thick: 4px;
 
         content: '.';
       }
-    }
 
-    &--selected, &--disabled { display: none; }
-
-    &--disabled {
-      color: #ff6;
+      .feed-card--hover & {
+        color: $highlight-hover;
+        border-color: $highlight-hover;
+      }
     }
   }
+
 
   &__serving {
     position: absolute;
@@ -115,6 +172,22 @@ $border-thick: 4px;
     &-unit {
       line-height: 80%;
     }
+
+    .feed-card--hover & {
+      background-color: $highlight-hover;
+    }
+
+    .feed-card__input:checked ~ .feed-card__content & {
+      background-color: $highlight-checked;
+    }
+
+    .feed-card__input:disabled ~ .feed-card__content & {
+      background-color: $highlight-disabled;
+    }
+
+    .feed-card--hover .feed-card__input:checked ~ .feed-card__content & {
+      background-color: $highlight-checked-hover;
+    }
   }
 
   &__cap {
@@ -133,6 +206,22 @@ $border-thick: 4px;
     stroke: $highlight;
     stroke-width: $border-thick;
     stroke-linecap: "butt";
+
+    .feed-card--hover & {
+      stroke: $highlight-hover;
+    }
+
+    .feed-card__input:checked ~ .feed-card__content & {
+      stroke: $highlight-checked;
+    }
+
+    .feed-card__input:disabled ~ .feed-card__content & {
+      stroke: $highlight-disabled;
+    }
+
+    .feed-card--hover .feed-card__input:checked ~ .feed-card__content & {
+      stroke: $highlight-checked-hover;
+    }
   }
 
   &__descr {
@@ -147,6 +236,15 @@ $border-thick: 4px;
 
     &--selected {
       display: none;
+    }
+
+    .feed-card--hover .feed-card__input:checked ~ .feed-card__content & {
+      display: none;
+
+      &--selected {
+        display: block;
+        color: $highlight-checked-hover;
+      }
     }
   }
 

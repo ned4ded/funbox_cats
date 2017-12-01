@@ -30,6 +30,56 @@
       <h1 class="main__headline">Ты сегодня кормил кота?</h1>
       <ul class="cats-feed">
         <li class="cats-feed__item feed-card">
+          <input type="checkbox" id="cats-feed-card-1" class="feed-card__input">
+          <label for="cats-feed-card-1" class="feed-card__content">
+              <p class="feed-card__descr">Сказочное заморское яство</p>
+              <p class="feed-card__descr feed-card__descr--selected">Котэ не одобряет?</p>
+              <h2 class="feed-card__name">Нямушка <span class="feed-card__name-sub">с фуа-гра</span></h2>
+              <ul class="feed-card__spec">
+                <li class="feed-card__spec-item"><span class="feed-card__spec-item-count">10</span> порций</li>
+                <li class="feed-card__spec-item">мышь в подарок</li>
+              </ul>
+              <div class="feed-card__serving">
+                <span class="feed-card__serving-weight">0,5</span>
+                <span class="feed-card__serving-unit">кг</span>
+              </div>
+              <svg class="feed-card__cap hidden">
+                <use xlink:href="#feed-card-cap"></use>
+              </svg>
+          </label>
+
+          <ul class="feed-card__agit">
+            <li class="feed-card__agit-item">Чего сидишь? Порадуй котэ, <label class="feed-card__agit-link" for="cats-feed-card-1">купи</label></li>
+            <li class="feed-card__agit-item feed-card__agit-item--selected">Печень утки разварная с артишоками.</li>
+            <li class="feed-card__agit-item feed-card__agit-item--disabled">Печалька, с фуа-гра закончился.</li>
+          </ul>
+        </li>
+        <li class="cats-feed__item feed-card">
+          <input type="checkbox" id="cats-feed-card-2" class="feed-card__input" checked>
+          <label for="cats-feed-card-2" class="feed-card__content">
+              <p class="feed-card__descr">Сказочное заморское яство</p>
+              <p class="feed-card__descr feed-card__descr--selected">Котэ не одобряет?</p>
+              <h2 class="feed-card__name">Нямушка <span class="feed-card__name-sub">с рыбой</span></h2>
+              <ul class="feed-card__spec">
+                <li class="feed-card__spec-item"><span class="feed-card__spec-item-count">40</span> порций</li>
+                <li class="feed-card__spec-item"><span class="feed-card__spec-item-count">2</span> мыши в подарок</li>
+              </ul>
+              <div class="feed-card__serving">
+                <span class="feed-card__serving-weight">2</span>
+                <span class="feed-card__serving-unit">кг</span>
+              </div>
+              <svg class="feed-card__cap hidden">
+                <use xlink:href="#feed-card-cap"></use>
+              </svg>
+          </label>
+
+          <ul class="feed-card__agit">
+            <li class="feed-card__agit-item">Чего сидишь? Порадуй котэ, <label class="feed-card__agit-link" for="cats-feed-card-2">купи</label></li>
+            <li class="feed-card__agit-item feed-card__agit-item--selected">Головы щучьи с чесноком да свежайшая сёмгушка.</li>
+            <li class="feed-card__agit-item feed-card__agit-item--disabled">Печалька, с рыбой закончился.</li>
+          </ul>
+        </li>
+        <li class="cats-feed__item feed-card">
           <input type="checkbox" id="cats-feed-card-3" class="feed-card__input" disabled>
           <label for="cats-feed-card-3" class="feed-card__content">
               <p class="feed-card__descr">Сказочное заморское яство</p>
@@ -44,18 +94,20 @@
                 <span class="feed-card__serving-weight">5</span>
                 <span class="feed-card__serving-unit">кг</span>
               </div>
-              <ul class="feed-card__agit">
-                <li class="feed-card__agit-item">Чего сидишь? Порадуй котэ, <label class="feed-card__agit-link" for="cats-feed-card-3">купи</label></li>
-                <li class="feed-card__agit-item feed-card__agit-item--selected"></li>
-                <li class="feed-card__agit-item feed-card__agit-item--disabled"></li>
-              </ul>
               <svg class="feed-card__cap hidden">
                 <use xlink:href="#feed-card-cap"></use>
               </svg>
           </label>
+
+          <ul class="feed-card__agit">
+            <li class="feed-card__agit-item">Чего сидишь? Порадуй котэ, <label class="feed-card__agit-link" for="cats-feed-card-3">купи</label></li>
+            <li class="feed-card__agit-item feed-card__agit-item--selected">Филе из цыплят с трюфелями в бульоне.</li>
+            <li class="feed-card__agit-item feed-card__agit-item--disabled">Печалька, с курой закончился.</li>
+          </ul>
         </li>
       </ul>
     </div>
   </main>
+  <script type="text/javascript" src="./js/custom.js"></script>
 </body>
 </html>
